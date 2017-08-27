@@ -4,7 +4,6 @@
 #    Adam Burbidge
 #############################
 
-
 def isTriangle(a,b,c):
     """Check that the numbers form a valid triangle.
     
@@ -36,11 +35,18 @@ def isTriangle(a,b,c):
 
 def classifyTriangle(a,b,c):
     if isTriangle(a,b,c):
+        mediannumber = sorted([a,b,c])[1]
         if a == b and b == c:
+            #Equilateral triangle if all sides are of equal length
             return 'Equilateral'
         elif a == b or b == c or c == a:
-            #Test for square triangle
-            return 'Isosceles'
+            #Isosceles triangle if any two sides are of equal length
+            if abs(min(a,b,c)**2 + mediannumber**2 - max(a,b,c)**2) < 0.0000001:
+                #Currently testing to an accuracy of 1E-07
+                #This can be changed later if needed
+                return 'IsoscelesRight'
+            else:
+                return 'Isosceles'
         else:
             pass
     else:

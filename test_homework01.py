@@ -5,6 +5,7 @@
 #############################
 import unittest
 from homework01 import *
+from math import sqrt
 
 class TestHomework01(unittest.TestCase):
     
@@ -36,6 +37,10 @@ class TestHomework01(unittest.TestCase):
     def test_classifyTriangle_Isosceles(self):
         #Test some Isosceles Triangles
         self.assertEqual(classifyTriangle(2, 2, 1),'Isosceles')
+    
+    def test_classifyTriangle_IsoscelesRight(self):
+        #Test some Isosceles Right Triangles
+        self.assertEqual(classifyTriangle(sqrt(2),sqrt(2),2),'IsoscelesRight')
     
 if __name__ == '__main__':
     unittest.main(verbosity=2)
