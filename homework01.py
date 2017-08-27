@@ -48,7 +48,12 @@ def classifyTriangle(a,b,c):
             else:
                 return 'Isosceles'
         else:
-            pass
+            if abs(min(a,b,c)**2 + mediannumber**2 - max(a,b,c)**2) < 0.0000001:
+                #Currently testing to an accuracy of 1E-07
+                #This can be changed later if needed
+                return 'ScaleneRight'
+            else:
+                return 'Scalene'
     else:
         return 'NotATriangle'
 

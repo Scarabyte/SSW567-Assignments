@@ -42,5 +42,9 @@ class TestHomework01(unittest.TestCase):
         #Test some Isosceles Right Triangles
         self.assertEqual(classifyTriangle(sqrt(2),sqrt(2),2),'IsoscelesRight')
     
+    def test_classifyTriangle_Scalene(self):
+        #Test some Scalene Triangles
+        self.assertEqual(classifyTriangle(1,2,3),'Scalene')
+    
 if __name__ == '__main__':
     unittest.main(verbosity=2)
