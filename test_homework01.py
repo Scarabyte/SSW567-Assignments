@@ -11,7 +11,7 @@ class TestHomework01(unittest.TestCase):
     def setUp(self):
         pass
     
-    def test_istriangle(self):
+    def test_isTriangle(self):
         
         #Test some numbers that will and won't form triangles
         self.assertTrue(isTriangle(3,4,5))
@@ -25,6 +25,9 @@ class TestHomework01(unittest.TestCase):
         self.assertFalse(isTriangle(1,2,5))
         self.assertFalse(isTriangle(8,2,12))
         self.assertFalse(isTriangle(5,2,9))
-        
+    
+    def test_classifyTriangle(self):
+        pass
+    
 if __name__ == '__main__':
     unittest.main(verbosity=2)
