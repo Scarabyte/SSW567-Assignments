@@ -48,6 +48,7 @@ def classifyTriangle(a,b,c):
             else:
                 return 'Isosceles'
         else:
+            #Scalene triangles have no specific relationship between sides
             if abs(min(a,b,c)**2 + mediannumber**2 - max(a,b,c)**2) < 0.0000001:
                 #Currently testing to an accuracy of 1E-07
                 #This can be changed later if needed
@@ -63,3 +64,5 @@ if __name__ == "__main__":
     
     print "isTriangle(1,4,6) = " + str(isTriangle(1,4,6))
     print "isTriangle(3,3,9) = " + str(isTriangle(3,3,9))
+    
+    print "classifyTriangle(3,4,5) = " + classifyTriangle(3,4,5)

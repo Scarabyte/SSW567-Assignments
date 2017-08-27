@@ -46,5 +46,9 @@ class TestHomework01(unittest.TestCase):
         #Test some Scalene Triangles
         self.assertEqual(classifyTriangle(1,2,3),'Scalene')
     
+    def test_classifyTriangle_ScaleneRight(self):
+        #Test some Scalene Right Triangles
+        self.assertEqual(classifyTriangle(3,4,5),'ScaleneRight')
+    
 if __name__ == '__main__':
     unittest.main(verbosity=2)
