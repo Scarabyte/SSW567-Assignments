@@ -12,14 +12,16 @@ class TestHomework01(unittest.TestCase):
     def setUp(self):
         pass
     
-    def test_isTriangle(self):
-        #Test some numbers that will and won't form triangles
+    def test_isTriangleTrue(self):
+        #Test some numbers that form triangles
         self.assertTrue(isTriangle(3,4,5))
         self.assertTrue(isTriangle(2,2,1))
         self.assertTrue(isTriangle(1,2,3))
         self.assertTrue(isTriangle(8,3,10))
         self.assertTrue(isTriangle(7,2,8))
-        
+    
+    def test_isTriangleFalse(self):
+        #Test some numbers that don't form triangles
         self.assertFalse(isTriangle(1,4,6))
         self.assertFalse(isTriangle(3,3,9))        
         self.assertFalse(isTriangle(1,2,5))

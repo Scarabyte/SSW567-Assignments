@@ -35,7 +35,10 @@ def isTriangle(a,b,c):
 
 def classifyTriangle(a,b,c):
     if isTriangle(a,b,c):
+        #Python 3 has the statistics module and median function, but
+        #Python 2 doesn't so we just find it ourselves
         mediannumber = sorted([a,b,c])[1]
+        
         if a == b and b == c:
             #Equilateral triangle if all sides are of equal length
             return 'Equilateral'
@@ -66,3 +69,4 @@ if __name__ == "__main__":
     print "isTriangle(3,3,9) = " + str(isTriangle(3,3,9))
     
     print "classifyTriangle(3,4,5) = " + classifyTriangle(3,4,5)
+    print "classifyTriangle(1,2,3) = " + classifyTriangle(1,2,3)
