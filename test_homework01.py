@@ -33,5 +33,9 @@ class TestHomework01(unittest.TestCase):
         #Test some Equilateral Triangles
         self.assertEqual(classifyTriangle(1,1,1),'Equilateral')
     
+    def test_classifyTriangle_Isosceles(self):
+        #Test some Isosceles Triangles
+        self.assertEqual(classifyTriangle(2, 2, 1),'Isosceles')
+    
 if __name__ == '__main__':
     unittest.main(verbosity=2)

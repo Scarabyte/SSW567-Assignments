@@ -38,6 +38,9 @@ def classifyTriangle(a,b,c):
     if isTriangle(a,b,c):
         if a == b and b == c:
             return 'Equilateral'
+        elif a == b or b == c or c == a:
+            #Test for square triangle
+            return 'Isosceles'
         else:
             pass
     else:
