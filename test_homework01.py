@@ -12,7 +12,6 @@ class TestHomework01(unittest.TestCase):
         pass
     
     def test_isTriangle(self):
-        
         #Test some numbers that will and won't form triangles
         self.assertTrue(isTriangle(3,4,5))
         self.assertTrue(isTriangle(2,2,1))
@@ -26,8 +25,13 @@ class TestHomework01(unittest.TestCase):
         self.assertFalse(isTriangle(8,2,12))
         self.assertFalse(isTriangle(5,2,9))
     
-    def test_classifyTriangle(self):
-        pass
+    def test_classifyTriangle_NotATriangle(self):
+        #Test some non-triangles
+        self.assertEqual(classifyTriangle(1,4,6),'NotATriangle')
+    
+    def test_classifyTriangle_Equilateral(self):
+        #Test some Equilateral Triangles
+        self.assertEqual(classifyTriangle(1,1,1),'Equilateral')
     
 if __name__ == '__main__':
     unittest.main(verbosity=2)

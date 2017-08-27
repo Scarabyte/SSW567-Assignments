@@ -35,7 +35,13 @@ def isTriangle(a,b,c):
     return max(a,b,c) <= a + b + c - max(a,b,c)
 
 def classifyTriangle(a,b,c):
-    pass
+    if isTriangle(a,b,c):
+        if a == b and b == c:
+            return 'Equilateral'
+        else:
+            pass
+    else:
+        return 'NotATriangle'
 
 if __name__ == "__main__":
     print "isTriangle(3,4,5) = " + str(isTriangle(3,4,5))
