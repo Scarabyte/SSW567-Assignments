@@ -8,6 +8,7 @@ from homework01 import *
 
 
 class TestHomework01(unittest.TestCase):
+    """This class tests the functions in the homework01.py file."""
 
     def setUp(self):
         pass
@@ -42,8 +43,8 @@ class TestHomework01(unittest.TestCase):
 
     def test_classifyTriangle_IsoscelesRight(self):
         # Test some Isosceles Right Triangles
-        self.assertEqual(classifyTriangle(
-            sqrt(2), sqrt(2), 2), 'IsoscelesRight')
+        self.assertEqual(classifyTriangle(sqrt(2), sqrt(2), 2),
+                         'IsoscelesRight')
 
     def test_classifyTriangle_Scalene(self):
         # Test some Scalene Triangles

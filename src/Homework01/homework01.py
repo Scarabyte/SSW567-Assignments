@@ -9,6 +9,11 @@ from math import sqrt
 def isTriangle(a, b, c):
     """Check that the numbers form a valid triangle.
 
+    Keyword arguments:
+    a -- length of first side
+    b -- length of second side
+    c -- length of third side
+
     In order for three numbers (representing the lengths of line segments)
     to form a triangle, the sum of the two smaller numbers must be
     greater than or equal to the largest number.
@@ -37,6 +42,30 @@ def isTriangle(a, b, c):
 
 
 def classifyTriangle(a, b, c):
+    """Classify triangles based on their side lengths.
+
+    Keyword arguments:
+    a -- length of first side
+    b -- length of second side
+    c -- length of third side
+
+    There are three types of triangles:
+
+    - Equilateral triangles have three sides of equal length
+    - Isosceles triangles have two sides of equal length
+    - Scalene triangles have all three sides of different lengths
+
+    In addition, a Scalene or Isosceles triangle may also form a right triangle
+    where one of the angles is 90 degrees and the sides of the triangle
+    satisfy the Pythagorean theorem:
+
+        a**2 + b**2 = c**2
+
+    Note that most solutions will involve floating-point (and often
+    irrational) numbers. Since floating-point numbers generally cannot
+    be represented exactly in binary notation, this function currently
+    verifies the equation to an accuracy of 1E-07.
+    """
     if isTriangle(a, b, c):
         # Python 3 has the statistics module and median function, but
         # Python 2 doesn't so we just find it ourselves
@@ -47,9 +76,9 @@ def classifyTriangle(a, b, c):
             return 'Equilateral'
         elif a == b or b == c or c == a:
             # Isosceles triangle if any two sides are of equal length
-            if (abs(min(a, b, c) ** 2
-                    + mediannumber ** 2
-                    - max(a, b, c) ** 2) < 0.0000001):
+            if (abs(min(a, b, c)**2
+                    + mediannumber**2
+                    - max(a, b, c)**2) < 0.0000001):
                 # Currently testing to an accuracy of 1E-07
                 # This can be changed later if needed
                 return 'IsoscelesRight'
@@ -57,9 +86,9 @@ def classifyTriangle(a, b, c):
                 return 'Isosceles'
         else:
             # Scalene triangles have no specific relationship between sides
-            if (abs(min(a, b, c) ** 2
-                    + mediannumber ** 2
-                    - max(a, b, c) ** 2) < 0.0000001):
+            if (abs(min(a, b, c)**2
+                    + mediannumber**2
+                    - max(a, b, c)**2) < 0.0000001):
                 # Currently testing to an accuracy of 1E-07
                 # This can be changed later if needed
                 return 'ScaleneRight'
