@@ -6,7 +6,7 @@
 from math import sqrt
 
 
-def isTriangle(a, b, c):
+def is_triangle(a, b, c):
     """Check that the numbers form a valid triangle.
 
     Keyword arguments:
@@ -41,7 +41,7 @@ def isTriangle(a, b, c):
     return max(a, b, c) <= a + b + c - max(a, b, c)
 
 
-def classifyTriangle(a, b, c):
+def classify_triangle(a, b, c):
     """Classify triangles based on their side lengths.
 
     Keyword arguments:
@@ -66,7 +66,7 @@ def classifyTriangle(a, b, c):
     be represented exactly in binary notation, this function currently
     verifies the equation to an accuracy of 1E-07.
     """
-    if isTriangle(a, b, c):
+    if is_triangle(a, b, c):
         # Python 3 has the statistics module and median function, but
         # Python 2 doesn't so we just find it ourselves
         mediannumber = sorted([a, b, c])[1]
@@ -99,12 +99,12 @@ def classifyTriangle(a, b, c):
 
 
 if __name__ == "__main__":
-    print "isTriangle(3,4,5) = " + str(isTriangle(3, 4, 5))
-    print "isTriangle(2,2,1) = " + str(isTriangle(2, 2, 1))
+    print "is_triangle(3,4,5) = " + str(is_triangle(3, 4, 5))
+    print "is_triangle(2,2,1) = " + str(is_triangle(2, 2, 1))
 
-    print "isTriangle(1,4,6) = " + str(isTriangle(1, 4, 6))
-    print "isTriangle(3,3,9) = " + str(isTriangle(3, 3, 9))
+    print "is_triangle(1,4,6) = " + str(is_triangle(1, 4, 6))
+    print "is_triangle(3,3,9) = " + str(is_triangle(3, 3, 9))
 
-    print "classifyTriangle(3,4,5) = " + classifyTriangle(3, 4, 5)
-    print "classifyTriangle(1,2,3) = " + classifyTriangle(1, 2, 3)
-    print "classifyTriangle(1,1,sqrt(2) = " + classifyTriangle(1, 1, sqrt(2))
+    print "classify_triangle(3,4,5) = " + classify_triangle(3, 4, 5)
+    print "classify_triangle(1,2,3) = " + classify_triangle(1, 2, 3)
+    print "classify_triangle(1,1,sqrt(2) = " + classify_triangle(1, 1, sqrt(2))
