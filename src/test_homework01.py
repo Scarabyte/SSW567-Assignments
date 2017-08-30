@@ -14,7 +14,7 @@ class TestHomework01(unittest.TestCase):
         pass
 
     def test_isTriangleTrue(self):
-        # Test some numbers that form triangles
+        """Test some numbers that form triangles"""
         self.assertTrue(isTriangle(3, 4, 5))
         self.assertTrue(isTriangle(2, 2, 1))
         self.assertTrue(isTriangle(1, 2, 3))
@@ -22,7 +22,7 @@ class TestHomework01(unittest.TestCase):
         self.assertTrue(isTriangle(7, 2, 8))
 
     def test_isTriangleFalse(self):
-        # Test some numbers that don't form triangles
+        """Test some numbers that don't form triangles"""
         self.assertFalse(isTriangle(1, 4, 6))
         self.assertFalse(isTriangle(3, 3, 9))
         self.assertFalse(isTriangle(1, 2, 5))
@@ -30,28 +30,28 @@ class TestHomework01(unittest.TestCase):
         self.assertFalse(isTriangle(5, 2, 9))
 
     def test_classifyTriangle_NotATriangle(self):
-        # Test some non-triangles
+        """Test some non-triangles"""
         self.assertEqual(classifyTriangle(1, 4, 6), 'NotATriangle')
 
     def test_classifyTriangle_Equilateral(self):
-        # Test some Equilateral Triangles
+        """Test some Equilateral Triangles"""
         self.assertEqual(classifyTriangle(1, 1, 1), 'Equilateral')
 
     def test_classifyTriangle_Isosceles(self):
-        # Test some Isosceles Triangles
+        """Test some Isosceles Triangles"""
         self.assertEqual(classifyTriangle(2, 2, 1), 'Isosceles')
 
     def test_classifyTriangle_IsoscelesRight(self):
-        # Test some Isosceles Right Triangles
+        """Test some Isosceles Right Triangles"""
         self.assertEqual(classifyTriangle(sqrt(2), sqrt(2), 2),
                          'IsoscelesRight')
 
     def test_classifyTriangle_Scalene(self):
-        # Test some Scalene Triangles
+        """Test some Scalene Triangles"""
         self.assertEqual(classifyTriangle(1, 2, 3), 'Scalene')
 
     def test_classifyTriangle_ScaleneRight(self):
-        # Test some Scalene Right Triangles
+        """Test some Scalene Right Triangles"""
         self.assertEqual(classifyTriangle(3, 4, 5), 'ScaleneRight')
 
 

@@ -29,9 +29,9 @@ def isTriangle(a, b, c):
         max(a, b, c) <= a + b + c - max(a, b, c)
 
     (Note that equality only occurs in the case of a triangle with zero area,
-    which effectively forms a straight line with one 180 and two 0 degree angles,
-    thereby demonstrating that the shortest distance between two points is a
-    straight line in Euclidean space.)
+    which effectively forms a straight line, or a triangle with one 180 and
+    two 0 degree angles, thereby demonstrating that the shortest distance
+    between two points is a straight line in Euclidean space.)
 
     See https://en.wikipedia.org/wiki/Triangle_inequality
     for a more detailed explanation, and mathematical proofs at
