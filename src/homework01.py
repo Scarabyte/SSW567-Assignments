@@ -107,7 +107,8 @@ if __name__ == "__main__":
 
     print "classify_triangle(3,4,5) = " + classify_triangle(3, 4, 5)
     print "classify_triangle(1,2,3) = " + classify_triangle(1, 2, 3)
-    print "classify_triangle(1,1,sqrt(2)) = " + classify_triangle(1, 1, sqrt(2))
+    print ("classify_triangle(1,1,sqrt(2)) = "
+          + classify_triangle(1, 1, sqrt(2)))
 
     print "classify_triangle(2,2,1) = " + classify_triangle(2, 2, 1)
     print "classify_triangle(3,3,3) = " + classify_triangle(3, 3, 3)
@@ -120,6 +121,6 @@ if __name__ == "__main__":
     print "classify_triangle(3,4,-5) = " + classify_triangle(3, 4, -5)
 
     print ("classify_triangle(1/sqrt(2),1/sqrt(2),1) = "
-           + classify_triangle(1/sqrt(2),1/sqrt(2),1))
+           + classify_triangle(1 / sqrt(2), 1 / sqrt(2), 1))
     print ("classify_triangle(1/sqrt(2),1/sqrt(2),2) = "
-           + classify_triangle(1/sqrt(2),1/sqrt(2),2))
+           + classify_triangle(1 / sqrt(2), 1 / sqrt(2), 2))
