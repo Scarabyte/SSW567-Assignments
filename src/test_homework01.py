@@ -54,6 +54,14 @@ class TestHomework01(unittest.TestCase):
         """Test some Scalene Right Triangles"""
         self.assertEqual(classify_triangle(3, 4, 5), 'ScaleneRight')
 
+    def test_classify_triangle_non_integer_numbers(self):
+        """Test some triangles that do not have integer-length sides"""
+        pass
+
+    def test_classify_triangle_negative_numbers(self):
+        """Test the classify_triangle function with some negative numbers"""
+        pass
+
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
