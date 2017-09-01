@@ -56,11 +56,52 @@ class TestHomework01(unittest.TestCase):
 
     def test_classify_triangle_non_integer_numbers(self):
         """Test some triangles that do not have integer-length sides"""
-        pass
+        self.assertEqual(classify_triangle(2.5, 3.4, 7.6), 'NotATriangle')
+        self.assertEqual(classify_triangle(2.5, 3.4, 5.1), 'Scalene')
+
+    def test_classify_triangle_zero(self):
+        """Test the classify_triangle function with zero-length sides"""
+        self.assertEqual(classify_triangle(3, 0, 5), 'NotATriangle')
+        self.assertEqual(classify_triangle(0, 123, 0), 'NotATriangle')
+        self.assertEqual(classify_triangle(5.23461, 0, 0), 'NotATriangle')
 
     def test_classify_triangle_negative_numbers(self):
         """Test the classify_triangle function with some negative numbers"""
-        pass
+        self.assertEqual(classify_triangle(-1, 123, 3.14), 'NotATriangle')
+        self.assertEqual(classify_triangle(1, -123, 300), 'NotATriangle')
+
+    def test_classify_triangle_big_numbers(self):
+        """Test the classify_triangle function with "big" numbers"""
+        self.assertEqual(classify_triangle(10000000,
+                                           9999999,
+                                           10), 'Scalene')
+        self.assertEqual(classify_triangle(9999999.999999,
+                                           9999999.999999,
+                                           9999999.999999), 'Equilateral')
+        self.assertEqual(classify_triangle(10000000.0000001,
+                                           10000000,
+                                           20.652), 'Scalene')
+
+    def test_classify_triangle_small_numbers(self):
+        """Test the classify_triangle function with "small" numbers"""
+        self.assertEqual(classify_triangle(0.0000001,
+                                           0.0000002,
+                                           321), 'NotATriangle')
+        self.assertEqual(classify_triangle(0.001,
+                                           0.002,
+                                           0.002), 'Isosceles')
+
+    @unittest.expectedFailure
+    def test_classify_triangle_small_numbers_expected_failures(self):
+        """Test the classify_triangle function with "too small" numbers"""
+        self.assertEqual(classify_triangle(0.00000011,
+                                           0.00000012,
+                                           0.000000123), 'Equilateral',
+                         "Out of Stated Tolerance")
+        self.assertEqual(classify_triangle(0.0001,
+                                           0.0002,
+                                           0.0002), 'Isosceles',
+                         "Out of Stated Tolerance when squared")
 
 
 if __name__ == '__main__':
