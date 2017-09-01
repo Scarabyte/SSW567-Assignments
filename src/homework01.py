@@ -66,7 +66,7 @@ def classify_triangle(a, b, c):
     Note that most solutions will involve floating-point (and often
     irrational) numbers. Since floating-point numbers in general cannot
     be represented exactly in binary notation, this function currently
-    verifies the equation to an accuracy of 1E-07.
+    verifies the equation with a tolerance of 1E-07.
 
     Complex numbers, non-numeric input, and non-ASCII numbers are considered
     unsupported for this application, and may yield unexpected results.

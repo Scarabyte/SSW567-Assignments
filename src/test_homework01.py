@@ -1,8 +1,8 @@
-#############################
-#       SSW 567
-#     Homework 01
-#    Adam Burbidge
-#############################
+#######################
+#       SSW 567       #
+#     Homework 01     #
+#    Adam Burbidge    #
+#######################
 import unittest
 from homework01 import *
 
@@ -81,19 +81,48 @@ class TestHomework01(unittest.TestCase):
         self.assertEqual(classify_triangle(10000000.0000001,
                                            10000000,
                                            20.652), 'Scalene')
+        self.assertEqual(classify_triangle(10000000.001,
+                                           10000000.001,
+                                           0.1), 'Isosceles')
+
+    @unittest.expectedFailure
+    def test_classify_triangle_big_numbers_expected_failures(self):
+        """Test classify_triangle with large "out of tolerance" numbers"""
+        # Implementer's notes: These tests are expected to fail because
+        # the function as currently implemented is not really equipped
+        # to handle this type of input. However, after discussions with
+        # the customer to clarify the requirements and determin the actual
+        # needs for the function, it is possible that the implementation
+        # may change; in such a case, these tests may subsequently pass
+        # without requiring any changes to the tests themselves.
+        self.assertEqual(classify_triangle(10000000.0001,
+                                           10000000.0001,
+                                           0.01), 'Isosceles',
+                         'Out of tolerance when squared')
 
     def test_classify_triangle_small_numbers(self):
         """Test the classify_triangle function with "small" numbers"""
         self.assertEqual(classify_triangle(0.0000001,
                                            0.0000002,
-                                           321), 'NotATriangle')
+                                           0.000001), 'NotATriangle')
         self.assertEqual(classify_triangle(0.001,
                                            0.002,
                                            0.002), 'Isosceles')
+        self.assertEqual(classify_triangle(0.0000001, 0.0000001, 0.0000001),
+                         'Equilateral')
+        self.assertEqual(classify_triangle(0.0001, 0.0001, 0.0001),
+                         'Equilateral')
 
     @unittest.expectedFailure
     def test_classify_triangle_small_numbers_expected_failures(self):
         """Test the classify_triangle function with "too small" numbers"""
+        # Implementer's note: These are considered expected failures
+        # because they involve values smaller than the stated tolerance
+        # of 1E-07, and therefore are not expected to succeed.
+        # However the tolerance has not been approved by the customer,
+        # and so may be changed to a different value as necessary to suit
+        # the customer's needs. In such a case, it is possible that these
+        # tests will pass without requiring any changes themselves.
         self.assertEqual(classify_triangle(0.00000011,
                                            0.00000012,
                                            0.000000123), 'Equilateral',
