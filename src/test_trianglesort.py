@@ -1,14 +1,14 @@
 #######################
 #       SSW 567       #
-#     Homework 01     #
+#     Homework 04     #
 #    Adam Burbidge    #
 #######################
 import unittest
-from homework01 import *
+from trianglesort import *
 
 
 class TestHomework01(unittest.TestCase):
-    """This class tests the functions in the homework01.py file."""
+    """This class tests the functions in the trianglesort.py file."""
 
     def setUp(self):
         pass

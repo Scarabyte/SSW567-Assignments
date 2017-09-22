@@ -1,6 +1,6 @@
 #######################
 #       SSW 567       #
-#     Homework 01     #
+#     Homework 04     #
 #    Adam Burbidge    #
 #######################
 from math import sqrt
