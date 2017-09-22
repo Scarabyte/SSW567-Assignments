@@ -87,25 +87,25 @@ def classify_triangle(a, b, c):
 
         if a == b and b == c:
             # Equilateral triangle if all sides are of equal length
-            return 'Equilateral'
+            return 'Equilateral Triangle'
         elif a == b or b == c or c == a:
             # Isosceles triangle if any two sides are of equal length
             if (abs(min(a, b, c)**2
                     + mediannumber**2
                     - max(a, b, c)**2) < TOLERANCE):
-                return 'IsoscelesRight'
+                return 'Right Isosceles Triangle'
             else:
-                return 'Isosceles'
+                return 'Isosceles Triangle'
         else:
             # Scalene triangles have no specific relationship between sides
             if (abs(min(a, b, c)**2
                     + mediannumber**2
                     - max(a, b, c)**2) < TOLERANCE):
-                return 'ScaleneRight'
+                return 'Right Scalene Triangle'
             else:
-                return 'Scalene'
+                return 'Scalene Triangle'
     else:
-        return 'NotATriangle'
+        return 'Not A Triangle'
 
 
 if __name__ == "__main__":
