@@ -125,24 +125,16 @@ class TestHomework01(unittest.TestCase):
         self.assertEqual(classify_triangle(0.0001, 0.0001, 0.0001),
                          'Equilateral Triangle')
 
-    @unittest.expectedFailure
-    def test_classify_triangle_small_numbers_expected_failures(self):
-        """Test the classify_triangle function with "too small" numbers"""
-        # Implementer's note: These are considered expected failures
-        # because they involve values smaller than the stated tolerance
-        # of 1E-07, and therefore are not expected to succeed.
-        # However the tolerance has not been approved by the customer,
-        # and so may be changed to a different value as necessary to suit
-        # the customer's needs. In such a case, it is possible that these
-        # tests will pass without requiring any changes themselves.
-        self.assertEqual(classify_triangle(0.00000011,
-                                           0.00000012,
-                                           0.000000123), 'Equilateral Triangle',
-                         "Out of Stated Tolerance")
+    def test_classify_triangle_tolerance(self):
+        """Test the classify_triangle function with numbers near tolerance"""
+        self.assertEqual(classify_triangle(0.0000011,
+                                           0.0000012,
+                                           0.00000123),
+                         'Right Scalene Triangle', "Pythagoras Within 1%")
         self.assertEqual(classify_triangle(0.0001,
                                            0.0002,
                                            0.0002), 'Isosceles Triangle',
-                         "Out of Stated Tolerance when squared")
+                         "Pythagoras Not within 1%")
 
 
 if __name__ == '__main__':
