@@ -136,6 +136,11 @@ class TestHomework01(unittest.TestCase):
                                            0.0002), 'Isosceles Triangle',
                          "Pythagoras Not within 1%")
 
+    def test_get_user_input(self):
+        """Give it some mock input?"""
+        __builtins__.raw_input = lambda x:  ('3')
+        assert(get_user_input() == ('3', '3', '3'))
+
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)

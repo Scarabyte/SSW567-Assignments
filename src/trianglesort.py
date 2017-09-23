@@ -150,7 +150,16 @@ def classify_triangle(a, b, c):
         return 'Not A Triangle'
 
 
+def get_user_input():
+    user_a = raw_input("Input number a: ")
+    user_b = raw_input("Input number b:")
+    user_c = raw_input("Input number c: ")
+    return user_a, user_b, user_c
+
+
 if __name__ == "__main__":
+    print("Sample runs")
+
     print "is_triangle(3,4,5) = " + str(is_triangle(3, 4, 5))
     print "is_triangle(2,2,1) = " + str(is_triangle(2, 2, 1))
     print "is_triangle(10,10,10) = " + str(is_triangle(10, 10, 10))
@@ -207,3 +216,6 @@ if __name__ == "__main__":
     print("classify_triangle(3000,4000,5000) = " + classify_triangle(3000,
                                                                      4000,
                                                                      5000))
+
+# Try requesting user input
+    print("Interactive classification\n" + classify_triangle(get_user_input()))
