@@ -6,6 +6,43 @@
 from math import sqrt
 
 
+def validate_inputs(number):
+    """Verify that the given inputs are valid.
+
+    Based on the requirements (Homework 04 Req 2.1), the inputs must be:
+    1. Real numbers,
+    2. Greater than 0, and
+    3. "Not too big" (Note: poorly defined in the requirements)
+
+    ("Too big" here is nominally defined as greater than 1000, but this
+    can be changed if larger numbers are required.)
+    """
+
+    # Note: If we want to enforce the prospective numbers to be input
+    # in a particular format, there are several RegEx strings we could use
+    # to filter out invalid entries. (Some examples below that could be
+    # used of modified for the allowable format.) For the sake of simplicity
+    # in this function, however, we will assume that the "float" function is
+    # sufficient to identify the numbers that we want to use.
+    # Sample RegEx strings:
+    # (-|\+)*\d*\.*\d+
+    # (\+|-)*[0-9]+([.,][0-9]+)?
+    # ([0-9]+)([\.,]?([0-9]+))?
+    # ([\+-]?\.?)([0-9]+)([\.,]?([0-9]+))?
+    # ([\+]?\d+[,]?\d+)|([-]?\d+[.]?\d+)|(\d+[.]?\d+)|([0-9]+)|(\.[0-9]+)
+    # -?(?:[0-9]+(?:\.[0-9]*)?|(?:[0-9]+)?\.[0-9]+)
+
+    MAX_VALUE = 1000  # MAX_VALUE not defined in the requirements
+    try:
+        number = float(number)
+#        if (number > MAX_VALUE):
+#            raise SystemExit("A number provided is too big")
+#        else:
+        return (number > 0 and number <= MAX_VALUE)
+    except ValueError:
+        return False
+
+
 def is_triangle(a, b, c):
     """Check that the numbers form a valid triangle.
 
@@ -40,7 +77,10 @@ def is_triangle(a, b, c):
     https://proofwiki.org/wiki/Triangle_Inequality
     https://proofwiki.org/wiki/Sum_of_Two_Sides_of_Triangle_Greater_than_Third_Side
     """
-    return max(a, b, c) <= a + b + c - max(a, b, c)
+    if validate_inputs(a) and validate_inputs(b) and validate_inputs(c):
+        return max(a, b, c) <= a + b + c - max(a, b, c)
+    else:
+        return False
 
 
 def classify_triangle(a, b, c):
@@ -71,10 +111,9 @@ def classify_triangle(a, b, c):
     Complex numbers, non-numeric input, and non-ASCII numbers are considered
     unsupported for this application, and may yield unexpected results.
 
-    Likewise, the upper limit is nominally stated as 1E+07.
-    This is not explicitly enforced, and so larger numbers may succeed,
-    but the accuracy of results is not guaranteed; the user assumes
-    responsibility for testing numbers outside the stated range.
+    Likewise, the upper limit is not explicitly given in the requirements.
+    The result will be given as 'Not A Triangle' if the numbers provided
+    fail the input validation.
     """
     TOLERANCE = 0.0000001
     # Currently testing to an accuracy of 1E-07
@@ -159,3 +198,9 @@ if __name__ == "__main__":
     print "classify_triangle(1,2,0) = " + classify_triangle(1, 2, 0)
     print "classify_triangle(2,2,0) = " + classify_triangle(2, 0, 2)
     print "classify_triangle(2,0,0) = " + classify_triangle(2, 0, 0)
+
+    print
+    print("Try 'Too Big' numbers")
+    print("classify_triangle(3000,4000,5000) = " + classify_triangle(3000,
+                                                                     4000,
+                                                                     5000))
