@@ -34,11 +34,8 @@ def validate_inputs(number):
 
     MAX_VALUE = 1000  # MAX_VALUE not defined in the requirements
     try:
-        number = float(number)
-#        if (number > MAX_VALUE):
-#            raise SystemExit("A number provided is too big")
-#        else:
-        return (number > 0 and number <= MAX_VALUE)
+        testnumber = float(number)
+        return (testnumber > 0 and testnumber <= MAX_VALUE)
     except ValueError:
         return False
 
@@ -114,6 +111,11 @@ def classify_triangle(a, b, c):
     Likewise, the upper limit is not explicitly given in the requirements.
     The result will be given as 'Not A Triangle' if the numbers provided
     fail the input validation.
+
+    Note: It may be preferable from a user's perspective to have separate
+    error message(s) that indicate the exact reason for an input being rejected
+    by the function, but the requirements did not specify how the error
+    conditions were to be handled.
     """
     TOLERANCE = 0.0000001
     # Currently testing to an accuracy of 1E-07

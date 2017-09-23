@@ -13,6 +13,32 @@ class TestHomework01(unittest.TestCase):
     def setUp(self):
         pass
 
+    def test_validate_inputs_True(self):
+        """Test input validation"""
+        self.assertTrue(validate_inputs(42))
+        self.assertTrue(validate_inputs(3.141))
+        self.assertTrue(validate_inputs(98.7))
+        self.assertTrue(validate_inputs(.6180))
+        self.assertTrue(validate_inputs("42.314"))
+
+    def test_validate_inputs_Negative(self):
+        """Verify that negative numbers fail validation"""
+        self.assertFalse(validate_inputs(-98.7))
+        self.assertFalse(validate_inputs(-500))
+        self.assertFalse(validate_inputs(-0.618))
+        self.assertFalse(validate_inputs("-42.314"))
+
+    def test_validate_inputs_TooBig(self):
+        """Verify that numbers that are "too big" fail validation"""
+        self.assertFalse(validate_inputs(1234))
+        self.assertFalse(validate_inputs(1001))
+        self.assertFalse(validate_inputs(1000.01))
+
+    def test_validate_inputs_NonNumeric(self):
+        """Verify that non-numeric inputs fail validation"""
+        self.assertFalse(validate_inputs("555.123.4567"))
+        self.assertFalse(validate_inputs("5i+3j"))
+
     def test_is_triangle_True(self):
         """Test some numbers that form triangles"""
         self.assertTrue(is_triangle(3, 4, 5))
