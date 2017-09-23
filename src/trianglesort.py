@@ -117,7 +117,7 @@ def classify_triangle(a, b, c):
     by the function, but the requirements did not specify how the error
     conditions were to be handled.
     """
-    TOLERANCE = 0.0000001
+    TOLERANCE = 0.01
     # Currently testing to an accuracy of 1E-07
     # This can be changed later if needed
 
@@ -131,9 +131,10 @@ def classify_triangle(a, b, c):
             return 'Equilateral Triangle'
         elif a == b or b == c or c == a:
             # Isosceles triangle if any two sides are of equal length
-            if (abs(min(a, b, c)**2
-                    + mediannumber**2
-                    - max(a, b, c)**2) < TOLERANCE):
+            if (abs((min(a, b, c)**2.
+                     + mediannumber**2.
+                     - max(a, b, c)**2.)
+                    / max(a, b, c)**2.) < TOLERANCE):
                 return 'Right Isosceles Triangle'
             else:
                 return 'Isosceles Triangle'
