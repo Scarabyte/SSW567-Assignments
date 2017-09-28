@@ -1,6 +1,6 @@
 #######################
 #       SSW 567       #
-#     Homework 04     #
+#     Homework 05     #
 #    Adam Burbidge    #
 #######################
 from math import sqrt
@@ -149,63 +149,3 @@ def classify_triangle(a, b, c):
     else:
         return 'Not A Triangle'
 
-
-if __name__ == "__main__":
-    print("Sample runs")
-
-    print "is_triangle(3,4,5) = " + str(is_triangle(3, 4, 5))
-    print "is_triangle(2,2,1) = " + str(is_triangle(2, 2, 1))
-    print "is_triangle(10,10,10) = " + str(is_triangle(10, 10, 10))
-
-    print "is_triangle(1,4,6) = " + str(is_triangle(1, 4, 6))
-    print "is_triangle(3,3,9) = " + str(is_triangle(3, 3, 9))
-
-    print
-    print "Show examples of every valid classification"
-    print "classify_triangle(5,3,4) = " + classify_triangle(5, 3, 4)
-    print "classify_triangle(2,1,3) = " + classify_triangle(2, 1, 3)
-    print ("classify_triangle(1,1,sqrt(2)) = "
-           + classify_triangle(1, 1, sqrt(2)))
-    print "classify_triangle(2,2,1) = " + classify_triangle(2, 2, 1)
-    print "classify_triangle(3,3,3) = " + classify_triangle(3, 3, 3)
-
-    print
-    print "Show inputs which fail the Triangle Inequality are not triangles"
-    print "classify_triangle(3,4,6) = " + classify_triangle(3, 4, 6)
-    print "classify_triangle(3,4,7) = " + classify_triangle(3, 4, 7)
-    print "classify_triangle(3,4,8) = " + classify_triangle(3, 4, 8)
-
-    print
-    print "Negative numbers are considered 'NotATriangle'"
-    print "classify_triangle(-3,4,5) = " + classify_triangle(-3, 4, 5)
-    print "classify_triangle(3,-4,5) = " + classify_triangle(3, -4, 5)
-    print "classify_triangle(3,4,-5) = " + classify_triangle(3, 4, -5)
-    print "classify_triangle(-3,-4,5) = " + classify_triangle(-3, -4, 5)
-    print "classify_triangle(-3,-4,-5) = " + classify_triangle(-3, -4, -5)
-    print "classify_triangle(-5,-5,-5) = " + classify_triangle(-5, -5, -5)
-
-    print
-    print "Demonstrate non-integer numbers"
-    print ("classify_triangle(2.5, 3.4, 7.6) = "
-           + classify_triangle(2.5, 3.4, 7.6))
-    print ("classify_triangle(2.5, 3.4, 5.1) = "
-           + classify_triangle(2.5, 3.4, 5.1))
-
-    print
-    print "Demonstrate irrational numbers"
-    print ("classify_triangle(1/sqrt(2),1/sqrt(2),1) = "
-           + classify_triangle(1 / sqrt(2), 1 / sqrt(2), 1))
-    print ("classify_triangle(1/sqrt(2),1/sqrt(2),2) = "
-           + classify_triangle(1 / sqrt(2), 1 / sqrt(2), 2))
-
-    print
-    print "Demonstrate triangles with one or more zero-length sides"
-    print "classify_triangle(1,2,0) = " + classify_triangle(1, 2, 0)
-    print "classify_triangle(2,2,0) = " + classify_triangle(2, 0, 2)
-    print "classify_triangle(2,0,0) = " + classify_triangle(2, 0, 0)
-
-    print
-    print("Try 'Too Big' numbers")
-    print("classify_triangle(3000,4000,5000) = " + classify_triangle(3000,
-                                                                     4000,
-                                                                     5000))

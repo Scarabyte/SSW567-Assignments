@@ -1,10 +1,12 @@
 #######################
 #       SSW 567       #
-#     Homework 04     #
+#     Homework 05     #
 #    Adam Burbidge    #
 #######################
 import unittest
-from trianglesort import *
+from trianglesort import *  # pylint: disable=wildcard-import
+# Note: Ignoring the wildcard import in PyLint because we do want to exercise
+# every function in the module and be warned if there are any unused ones.
 
 
 class TestHomework04(unittest.TestCase):
