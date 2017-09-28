@@ -9,8 +9,8 @@ from trianglesort import *  # pylint: disable=wildcard-import
 # every function in the module and be warned if there are any unused ones.
 
 
-class TestHomework04(unittest.TestCase):
-    """This class tests the functions in the trianglesort.py file."""
+class TestValidateInputs(unittest.TestCase):
+    """This class tests the validate_inputs function"""
 
     def setUp(self):
         pass
@@ -47,6 +47,13 @@ class TestHomework04(unittest.TestCase):
         self.assertFalse(validate_inputs("ABCD"))
         self.assertFalse(validate_inputs("+1-(800)-555-2468"))
 
+
+class TestIsTriangle(unittest.TestCase):
+    """This class tests the is_triangle function"""
+
+    def setUp(self):
+        pass
+
     def test_is_triangle_True(self):
         # Test Case 05
         """Test some numbers that form triangles"""
@@ -64,6 +71,13 @@ class TestHomework04(unittest.TestCase):
         self.assertFalse(is_triangle(1, 2, 5))
         self.assertFalse(is_triangle(8, 2, 12))
         self.assertFalse(is_triangle(5, 2, 9))
+
+
+class TestClassifyTriangle(unittest.TestCase):
+    """This class tests the classify_triangle function"""
+
+    def setUp(self):
+        pass
 
     def test_classify_triangle_NotATriangle(self):
         # Test Case 07

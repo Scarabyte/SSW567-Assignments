@@ -148,4 +148,3 @@ def classify_triangle(a, b, c):
                 return 'Scalene Triangle'
     else:
         return 'Not A Triangle'
-
