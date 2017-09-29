@@ -4,6 +4,7 @@
 #    Adam Burbidge    #
 #######################
 import unittest
+import random
 from trianglesort import *  # pylint: disable=wildcard-import
 # Note: Ignoring the wildcard import in PyLint because we do want to exercise
 # every function in the module and be warned if there are any unused ones.
@@ -13,7 +14,41 @@ class TestValidateInputs(unittest.TestCase):
     """This class tests the validate_inputs function"""
 
     def setUp(self):
-        pass
+        random.seed()
+
+    def test_validate_inputs_valid_value(self):
+        """Test input validation with a valid value"""
+        # Since random.uniform returns a value in the range [a, b)
+        # use a slight mathematical hack to generate range (a, b]
+        # ANY number in this range should pass validation,
+        # so in theory we should be able to randomly select any number.
+        # (Note that the probability of returning exactly MAV_VALUE
+        # or exactly 0 is effectively zero anyway.)
+        testnumber = -random.uniform(-MAX_VALUE, 0)
+        self.assertTrue(validate_inputs(testnumber),
+                        "Result with " + str(testnumber))
+
+    def test_validate_inputs_upper_limit(self):
+        """Test input validation at the upper limit"""
+        self.assertTrue(validate_inputs(MAX_VALUE))
+
+    def test_validate_inputs_lower_limit(self):
+        """Test input validation at the lower limit"""
+        self.assertFalse(validate_inputs(0), "0 should be disallowed")
+
+    def test_validate_inputs_below_lower_limit(self):
+        """Test input validation below the lower limit"""
+        testnumber = -random.uniform(0, MAX_VALUE)
+        # There is nothing "special" about -MAX_VALUE in the lower range,
+        # but it was a convenient stopping point for the random range.
+        self.assertFalse(validate_inputs(testnumber))
+
+    def test_validate_inputs_above_upper_limit(self):
+        """Test input validation above the upper limit"""
+        testnumber = random.uniform(MAX_VALUE, 2 * MAX_VALUE)
+        # There is nothing "special" about 2 * MAV_VALUE in the upper range,
+        # but it was a convenient stopping point for the random range.
+        self.assertFalse(validate_inputs(testnumber))
 
     def test_validate_inputs_True(self):
         # Test Case 01

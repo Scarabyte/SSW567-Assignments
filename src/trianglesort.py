@@ -5,6 +5,9 @@
 #######################
 from math import sqrt
 
+# Specify an upper limit for numbers to be "too big"
+MAX_VALUE = 1000  # MAX_VALUE not defined in the requirements
+
 
 def validate_inputs(number):
     """Verify that the given inputs are valid.
@@ -32,7 +35,6 @@ def validate_inputs(number):
     # ([\+]?\d+[,]?\d+)|([-]?\d+[.]?\d+)|(\d+[.]?\d+)|([0-9]+)|(\.[0-9]+)
     # -?(?:[0-9]+(?:\.[0-9]*)?|(?:[0-9]+)?\.[0-9]+)
 
-    MAX_VALUE = 1000  # MAX_VALUE not defined in the requirements
     try:
         testnumber = float(number)
         return (testnumber > 0 and testnumber <= MAX_VALUE)
