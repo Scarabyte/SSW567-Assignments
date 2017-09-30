@@ -5,7 +5,7 @@
 #######################
 import unittest
 import random
-from math import sqrt
+import math
 from trianglesort import *  # pylint: disable=wildcard-import
 # Note: Ignoring the wildcard import in PyLint because we do want to exercise
 # every function in the module and be warned if there are any unused ones.
@@ -128,12 +128,12 @@ class TestIsTriangle(unittest.TestCase):
     def test_is_triangle_false_second_input_invalid(self):
         """Verify that is_triangle fails if second input is invalid"""
         self.assertFalse(is_triangle(3, "ABCD", 5))
-#        self.assertRaises(TypeError, is_triangle(3, "ABCD", 5))
 
     def test_is_triangle_false_third_input_invalid(self):
         """Verify that is_triangle fails if third input is invalid"""
         self.assertFalse(is_triangle(3, 4, "3i+4j"))
 
+# Original test cases
     def test_is_triangle_True(self):
         # Test Case 05
         """Test some numbers that form triangles"""
@@ -183,6 +183,51 @@ class TestClassifyTriangle(unittest.TestCase):
         """Test some non-triangles"""
         self.assertEqual(classify_triangle(1, 4, 6), 'Not A Triangle')
 
+    def test_classify_triangle_equilateral_integer(self):
+        """Verify an equilateral triangle with integer side lengths"""
+        self.assertEqual(classify_triangle(3, 3, 3),
+                         'Equilateral Triangle')
+
+    def test_classify_triangle_equilateral_float(self):
+        """Verify an equilateral triangle with flaoting point side lengths"""
+        self.assertEqual(classify_triangle(3.5, 3.5, 3.5),
+                         'Equilateral Triangle')
+
+    def test_classify_triangle_isosceles_regular(self):
+        """Verify an isosceles triangle"""
+        self.assertEqual(classify_triangle(2.1, 3, 2.1),
+                         'Isosceles Triangle')
+
+    def test_classify_triangle_isosceles_right(self):
+        """Verify an isosceles triangle"""
+        self.assertEqual(classify_triangle(2, 2.828, 2),
+                         'Right Isosceles Triangle')
+
+    def test_classify_triangle_scalene_regular(self):
+        """Verify an isosceles triangle"""
+        self.assertEqual(classify_triangle(7, 4.2, 3),
+                         'Scalene Triangle')
+
+    def test_classify_triangle_scalene_right(self):
+        """Verify an isosceles triangle"""
+        self.assertEqual(classify_triangle(3, 5, 4),
+                         'Right Scalene Triangle')
+
+    def test_classify_triangle_within_tolerance(self):
+        """Test a right triangle with sides within 1%"""
+        side_1, side_2 = 2, 2
+        side_3 = math.sqrt((side_1**2 + side_2**2) * 0.991)
+        self.assertEqual(classify_triangle(side_1, side_2, side_3),
+                         'Right Isosceles Triangle')
+
+    def test_classify_triangle_out_of_tolerance(self):
+        """Test a right triangle with sides more than 1% different"""
+        side_1, side_2 = 2, 2
+        side_3 = math.sqrt((side_1**2 + side_2**2) * 0.989)
+        self.assertEqual(classify_triangle(side_1, side_2, side_3),
+                         'Isosceles Triangle')
+
+# Original test cases
     def test_classify_triangle_Equilateral(self):
         # Test Case 08
         """Test some Equilateral Triangles"""
@@ -196,7 +241,7 @@ class TestClassifyTriangle(unittest.TestCase):
     def test_classify_triangle_IsoscelesRight(self):
         # Test Case 10
         """Test some Right Isosceles Triangles"""
-        self.assertEqual(classify_triangle(sqrt(2), sqrt(2), 2),
+        self.assertEqual(classify_triangle(math.sqrt(2), math.sqrt(2), 2),
                          'Right Isosceles Triangle')
 
     def test_classify_triangle_Scalene(self):

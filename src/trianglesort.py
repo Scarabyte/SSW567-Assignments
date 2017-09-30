@@ -3,7 +3,6 @@
 #     Homework 05     #
 #    Adam Burbidge    #
 #######################
-from math import sqrt
 # Specify an upper limit for numbers to be "too big"
 MAX_VALUE = 1000  # MAX_VALUE not defined in the requirements
 
@@ -75,19 +74,10 @@ def is_triangle(a, b, c):
     https://proofwiki.org/wiki/Triangle_Inequality
     https://proofwiki.org/wiki/Sum_of_Two_Sides_of_Triangle_Greater_than_Third_Side
     """
-    try:
-        if validate_inputs(a) and validate_inputs(b) and validate_inputs(c):
-            return max(a, b, c) <= a + b + c - max(a, b, c)
-        else:
-            return False
-    except TypeError:
-        return TypeError
-
-
-# def is_float_or_int(input_value):
-#     """This function returns a boolean for whether or not an input value
-#     is a floating point number or integer."""
-#     return (isinstance(input_value, int) or isinstance(input_value, float))
+    if validate_inputs(a) and validate_inputs(b) and validate_inputs(c):
+        return max(a, b, c) <= a + b + c - max(a, b, c)
+    else:
+        return False
 
 
 def classify_triangle(a, b, c):
@@ -132,14 +122,6 @@ def classify_triangle(a, b, c):
     str_is_square = ''
     TOLERANCE = 0.01
 
-#     if not((is_float_or_int(a))
-#             and (is_float_or_int(b))
-#             and (is_float_or_int(c))):
-#         return 'Error: Invalid input'
-#
-#     if (a == 0 or b == 0 or c == 0):
-#         return 'Error: Zero-length side'
-
     if is_triangle(a, b, c):
         mediannumber = sorted([a, b, c])[1]
         # Python 3 has the statistics module and median function, but
@@ -148,7 +130,7 @@ def classify_triangle(a, b, c):
         if (abs((min(a, b, c)**2.
                  + mediannumber**2.
                  - max(a, b, c)**2.)
-                / max(a, b, c)**2.) < TOLERANCE):
+                / max(a, b, c)**2.) <= TOLERANCE):
             str_is_square = 'Right '
 
         if a == b and b == c:
