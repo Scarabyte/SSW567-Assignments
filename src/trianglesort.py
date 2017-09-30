@@ -5,6 +5,7 @@
 #######################
 # Specify an upper limit for numbers to be "too big"
 MAX_VALUE = 1000  # MAX_VALUE not defined in the requirements
+TOLERANCE = 0.01
 
 
 def validate_inputs(number):
@@ -120,7 +121,6 @@ def classify_triangle(a, b, c):
     conditions were to be handled, only that an error be returned.
     """
     str_is_square = ''
-    TOLERANCE = 0.01
 
     if is_triangle(a, b, c):
         mediannumber = sorted([a, b, c])[1]
