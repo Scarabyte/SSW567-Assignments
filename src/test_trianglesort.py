@@ -5,6 +5,7 @@
 #######################
 import unittest
 import random
+from math import sqrt
 from trianglesort import *  # pylint: disable=wildcard-import
 # Note: Ignoring the wildcard import in PyLint because we do want to exercise
 # every function in the module and be warned if there are any unused ones.
@@ -88,6 +89,49 @@ class TestIsTriangle(unittest.TestCase):
 
     def setUp(self):
         pass
+
+    def test_is_triangle_true_valid_inputs_first_smallest(self):
+        """Verify valid inputs that form a triangle, first input smallest"""
+        self.assertTrue(is_triangle(3, 4, 5))
+
+    def test_is_triangle_true_valid_inputs_second_smallest(self):
+        """Verify valid inputs that form a triangle, second input smallest"""
+        self.assertTrue(is_triangle(7, 2, 8))
+
+    def test_is_triangle_true_valid_inputs_third_smallest(self):
+        """Verify valid inputs that form a triangle, third input smallest"""
+        self.assertTrue(is_triangle(3, 2, 1))
+
+    def test_is_triangle_two_inputs_equal_third(self):
+        """Verify valid inputs where the sum of two values equals the third
+        Note that the requirements were unclear as to whether or not we should
+        accept this as a valid triangle, but if we do it would be a triangle
+        with zero area."""
+        self.assertTrue(is_triangle(3, 1, 4))
+
+    def test_is_triangle_false_valid_inputs_first_smallest(self):
+        """Verify valid inputs that don't form a triangle, first smallest"""
+        self.assertFalse(is_triangle(1, 2, 4))
+
+    def test_is_triangle_false_valid_inputs_second_smallest(self):
+        """Verify valid inputs that don't form a triangle, second smallest"""
+        self.assertFalse(is_triangle(8, 3, 12))
+
+    def test_is_triangle_false_valid_inputs_third_smallest(self):
+        """Verify valid inputs that don't form a triangle, third smallest"""
+        self.assertFalse(is_triangle(9, 5, 2))
+
+    def test_is_triangle_false_first_input_invalid(self):
+        """Verify that is_triangle fails if first input is invalid"""
+        self.assertFalse(is_triangle(-3, 4, 5))
+
+    def test_is_triangle_false_second_input_invalid(self):
+        """Verify that is_triangle fails if second input is invalid"""
+        self.assertFalse(is_triangle(3, "ABCD", 5))
+
+    def test_is_triangle_false_third_input_invalid(self):
+        """Verify that is_triangle fails if third input is invalid"""
+        self.assertFalse(is_triangle(3, 4, "3i+4j"))
 
     def test_is_triangle_True(self):
         # Test Case 05

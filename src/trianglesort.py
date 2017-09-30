@@ -3,7 +3,6 @@
 #     Homework 05     #
 #    Adam Burbidge    #
 #######################
-from math import sqrt
 
 # Specify an upper limit for numbers to be "too big"
 MAX_VALUE = 1000  # MAX_VALUE not defined in the requirements
