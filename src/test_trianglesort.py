@@ -128,6 +128,7 @@ class TestIsTriangle(unittest.TestCase):
     def test_is_triangle_false_second_input_invalid(self):
         """Verify that is_triangle fails if second input is invalid"""
         self.assertFalse(is_triangle(3, "ABCD", 5))
+#        self.assertRaises(TypeError, is_triangle(3, "ABCD", 5))
 
     def test_is_triangle_false_third_input_invalid(self):
         """Verify that is_triangle fails if third input is invalid"""
@@ -157,6 +158,25 @@ class TestClassifyTriangle(unittest.TestCase):
 
     def setUp(self):
         pass
+
+    def test_classify_triangle_first_input_invalid(self):
+        """Verify classify_triangle returns error when first input invalid"""
+        self.assertEqual(classify_triangle('hello', 1, 1),
+                         'Not A Triangle')
+
+    def test_classify_triangle_second_input_invalid(self):
+        """Verify classify_triangle returns error when second input invalid"""
+        self.assertEqual(classify_triangle(5, -4, 3),
+                         'Not A Triangle')
+
+    def test_classify_triangle_third_input_invalid(self):
+        """Verify classify_triangle returns error when third input invalid"""
+        self.assertEqual(classify_triangle(5, 4, 0),
+                         'Not A Triangle')
+
+    def test_classify_triangle_non_triangle(self):
+        """Verify inputs that pass validation but don't form a triangle"""
+        self.assertEqual(classify_triangle(1, 3, 1), 'Not A Triangle')
 
     def test_classify_triangle_NotATriangle(self):
         # Test Case 07
