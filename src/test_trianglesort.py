@@ -19,6 +19,8 @@ class TestValidateInputs(unittest.TestCase):
 
     def test_validate_inputs_valid_value(self):
         """Test input validation with a valid value"""
+        # We'll choose a random number since any number
+        # in the valid range should work
         # Since random.uniform returns a value in the range [a, b)
         # use a slight mathematical hack to generate range (a, b]
         # ANY number in this range should pass validation,
@@ -85,7 +87,8 @@ class TestValidateInputs(unittest.TestCase):
         self.assertFalse(validate_inputs(1001))
         self.assertFalse(validate_inputs(1000.01))
 
-# Original test case, still used (rather than creating a new one)
+# Original test case, still used for the Invalid Input equivalence class
+# (rather than creating a new test, since we already had this one)
     def test_validate_inputs_NonNumeric(self):
         # Test Case 04
         """Verify that non-numeric inputs fail validation"""
@@ -214,7 +217,7 @@ class TestClassifyTriangle(unittest.TestCase):
 
     def test_classify_triangle_isosceles_regular(self):
         """Verify an isosceles triangle"""
-        self.assertEqual(classify_triangle(2.1, 3, 2.1),
+        self.assertEqual(classify_triangle(2, 3, 2),
                          'Isosceles Triangle')
 
     def test_classify_triangle_isosceles_right(self):
@@ -258,7 +261,6 @@ class TestClassifyTriangle(unittest.TestCase):
 
 # Obsolete because it is replaced by
 # test_classify_triangle_equilateral_integer
-# test_classify_triangle_equilateral_float
     def test_classify_triangle_Equilateral(self):
         # Test Case 08
         """Test some Equilateral Triangles"""
@@ -294,16 +296,21 @@ class TestClassifyTriangle(unittest.TestCase):
         """Test some Right Scalene Triangles"""
         self.assertEqual(classify_triangle(3, 4, 5), 'Right Scalene Triangle')
 
-# Obsolete because it is replaced by
-# test_classify_triangle_equilateral_float
-# test_classify_triangle_isosceles_regular
+# Partially obsolete because it is replaced by
 # test_classify_triangle_scalene_regular
+# But we do not have another test case for non-integer non-triangles
     def test_classify_triangle_non_integer_numbers(self):
         # Test Case 13
         """Test some triangles that do not have integer-length sides"""
         self.assertEqual(classify_triangle(2.5, 3.4, 7.6), 'Not A Triangle')
         self.assertEqual(classify_triangle(2.5, 3.4, 5.1), 'Scalene Triangle')
 
+# Original test case still useful because I don't have one that
+# explicitly checks for zero-length sides, although it
+# could be combined with
+# test_classify_triangle_first_input_invalid
+# test_classify_triangle_second_input_invalid
+# test_classify_triangle_third_input_invalid
     def test_classify_triangle_zero(self):
         # Test Case 14
         """Test the classify_triangle function with zero-length sides"""
@@ -311,17 +318,23 @@ class TestClassifyTriangle(unittest.TestCase):
         self.assertEqual(classify_triangle(0, 123, 0), 'Not A Triangle')
         self.assertEqual(classify_triangle(5.23461, 0, 0), 'Not A Triangle')
 
+# Original test case still useful because I don't have one that
+# explicitly checks for negative-length sides, although it
+# could be combined with
+# test_classify_triangle_first_input_invalid
+# test_classify_triangle_second_input_invalid
+# test_classify_triangle_third_input_invalid
     def test_classify_triangle_negative_numbers(self):
         # Test Case 15
         """Test the classify_triangle function with some negative numbers"""
         self.assertEqual(classify_triangle(-1, 123, 3.14), 'Not A Triangle')
         self.assertEqual(classify_triangle(1, -123, 300), 'Not A Triangle')
 
-# Could be combined with
+# Could be combined, as applicable, with
 # test_classify_triangle_scalene_right
 # test_classify_triangle_equilateral_float
 # test_classify_triangle_non_triangle
-# (But better to use trianglesort.TOLERANCE value so it will adapt to changes)
+# (But better to use trianglesort.TOLERANCE so it will adapt to changes)
     def test_classify_triangle_big_numbers(self):
         # Test Case 16
         """Test the classify_triangle function with "big" numbers"""
@@ -360,18 +373,19 @@ class TestClassifyTriangle(unittest.TestCase):
 
 # Could be combined with
 # test_classify_triangle_within_tolerance
-# (But better to use trianglesort.TOLERANCE value so it will adapt to changes)
+# test_classify_triangle_out_of_tolerance
+# (But better to use trianglesort.TOLERANCE so it will adapt to changes)
     def test_classify_triangle_tolerance(self):
         # Test Case 18
         """Test the classify_triangle function with numbers near tolerance"""
         self.assertEqual(classify_triangle(0.00011,
                                            0.00012,
                                            0.000162),
-                         'Right Scalene Triangle', "Pythagoras Within 1%")
+                         'Right Scalene Triangle')  # Pythagoras Within 1%
         self.assertEqual(classify_triangle(0.0001,
                                            0.0002,
-                                           0.0001), 'Isosceles Triangle',
-                         "Pythagoras Not within 1%")
+                                           0.0001),
+                         'Isosceles Triangle')  # Pythagoras Not within 1%
 
 
 if __name__ == '__main__':
