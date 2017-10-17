@@ -103,8 +103,8 @@ def classify_triangle(a, b, c):
 
     Note that most solutions will involve floating-point (and often
     irrational) numbers. Since floating-point numbers in general cannot
-    be represented exactly in binary notation, this function currently
-    verifies the equation with a tolerance of 1E-07.
+    be represented exactly in binary notation, this function verifies
+    the equation with a tolerance given by TOLERANCE.
 
     In this implementation, a triangle may not have zero-length sides.
 
@@ -112,6 +112,8 @@ def classify_triangle(a, b, c):
     unsupported for this application, and will report an error.
 
     Likewise, the upper limit is not explicitly given in the requirements.
+    The limit is arbitrarily set in MAX_VALUE.
+
     The result will be given as 'Not A Triangle' if the numbers provided
     fail the input validation.
 
