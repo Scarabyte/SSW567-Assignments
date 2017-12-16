@@ -25,7 +25,7 @@ class TestValidateInputs(unittest.TestCase):
         # use a slight mathematical hack to generate range (a, b]
         # ANY number in this range should pass validation,
         # so in theory we should be able to randomly select any number.
-        # (Note that the probability of returning exactly MAV_VALUE
+        # (Note that the probability of returning exactly MAX_VALUE
         # or exactly 0 is effectively zero anyway.)
         testnumber = -random.uniform(-MAX_VALUE, 0)
         self.assertTrue(validate_inputs(testnumber),
@@ -49,43 +49,11 @@ class TestValidateInputs(unittest.TestCase):
     def test_validate_inputs_above_upper_limit(self):
         """Test input validation above the upper limit"""
         testnumber = random.uniform(MAX_VALUE, 2 * MAX_VALUE)
-        # There is nothing "special" about 2 * MAV_VALUE in the upper range,
+        # There is nothing "special" about 2 * MAX_VALUE in the upper range,
         # but it was a convenient stopping point for the random range.
         self.assertFalse(validate_inputs(testnumber))
 
 # Original test cases follow.
-
-# Obsolete because it is replaced by
-# test_validate_inputs_valid_value
-# test_validate_inputs_upper_limit
-    def test_validate_inputs_True(self):
-        # Test Case 01
-        """Test input validation"""
-        self.assertTrue(validate_inputs(42))
-        self.assertTrue(validate_inputs(3.141))
-        self.assertTrue(validate_inputs(98.7))
-        self.assertTrue(validate_inputs(.6180))
-        self.assertTrue(validate_inputs("42.314"))
-
-# Obsolete because it is replaced by
-# test_validate_inputs_lower_limit
-# test_validate_inputs_below_lower_limit
-    def test_validate_inputs_Negative(self):
-        # Test Case 02
-        """Verify that negative numbers fail validation"""
-        self.assertFalse(validate_inputs(-98.7))
-        self.assertFalse(validate_inputs(-500))
-        self.assertFalse(validate_inputs(-0.618))
-        self.assertFalse(validate_inputs("-42.314"))
-
-# Obsolete because it is replaced by:
-# test_validate_inputs_above_upper_limit
-    def test_validate_inputs_TooBig(self):
-        # Test Case 03
-        """Verify that numbers that are "too big" fail validation"""
-        self.assertFalse(validate_inputs(1234))
-        self.assertFalse(validate_inputs(1001))
-        self.assertFalse(validate_inputs(1000.01))
 
 # Original test case, still used for the Invalid Input equivalence class
 # (rather than creating a new test, since we already had this one)
@@ -114,7 +82,7 @@ class TestIsTriangle(unittest.TestCase):
 
     def test_is_triangle_true_valid_inputs_third_smallest(self):
         """Verify valid inputs that form a triangle, third input smallest"""
-        self.assertTrue(is_triangle(3, 2, 1))
+        self.assertTrue(is_triangle(4, 3, 1))
 
     def test_is_triangle_two_inputs_equal_third(self):
         """Verify valid inputs where the sum of two values equals the third
@@ -147,38 +115,6 @@ class TestIsTriangle(unittest.TestCase):
         """Verify that is_triangle fails if third input is invalid"""
         self.assertFalse(is_triangle(3, 4, "3i+4j"))
 
-# Original test cases follow
-
-# Obsolete because it is replaced by
-# test_is_triangle_true_valid_inputs_first_smallest
-# test_is_triangle_true_valid_inputs_second_smallest
-# test_is_triangle_true_valid_inputs_third_smallest
-# test_is_triangle_two_inputs_equal_third
-    def test_is_triangle_True(self):
-        # Test Case 05
-        """Test some numbers that form triangles"""
-        self.assertTrue(is_triangle(3, 4, 5))
-        self.assertTrue(is_triangle(2, 2, 1))
-        self.assertTrue(is_triangle(1, 2, 3))
-        self.assertTrue(is_triangle(8, 3, 10))
-        self.assertTrue(is_triangle(7, 2, 8))
-
-# Obsolete because it is replaced by
-# test_is_triangle_false_valid_inputs_first_smallest
-# test_is_triangle_false_valid_inputs_second_smallest
-# test_is_triangle_false_valid_inputs_third_smallest
-# test_is_triangle_false_first_input_invalid
-# test_is_triangle_false_second_input_invalid
-# test_is_triangle_false_third_input_invalid
-    def test_is_triangle_False(self):
-        # Test Case 06
-        """Test some numbers that don't form triangles"""
-        self.assertFalse(is_triangle(1, 4, 6))
-        self.assertFalse(is_triangle(3, 3, 9))
-        self.assertFalse(is_triangle(1, 2, 5))
-        self.assertFalse(is_triangle(8, 2, 12))
-        self.assertFalse(is_triangle(5, 2, 9))
-
 
 class TestClassifyTriangle(unittest.TestCase):
     """This class tests the classify_triangle function"""
@@ -188,22 +124,20 @@ class TestClassifyTriangle(unittest.TestCase):
 
     def test_classify_triangle_first_input_invalid(self):
         """Verify classify_triangle returns error when first input invalid"""
-        self.assertEqual(classify_triangle('hello', 1, 1),
-                         'Not A Triangle')
+        self.assertEqual(classify_triangle('hello', 1, 1), 'Not A Triangle')
 
     def test_classify_triangle_second_input_invalid(self):
         """Verify classify_triangle returns error when second input invalid"""
-        self.assertEqual(classify_triangle(5, -4, 3),
-                         'Not A Triangle')
+        self.assertEqual(classify_triangle(5, -4, 3), 'Not A Triangle')
 
     def test_classify_triangle_third_input_invalid(self):
         """Verify classify_triangle returns error when third input invalid"""
-        self.assertEqual(classify_triangle(5, 4, 0),
-                         'Not A Triangle')
+        self.assertEqual(classify_triangle(5, 4, 0), 'Not A Triangle')
 
     def test_classify_triangle_non_triangle(self):
         """Verify inputs that pass validation but don't form a triangle"""
         self.assertEqual(classify_triangle(1, 3, 1), 'Not A Triangle')
+        self.assertEqual(classify_triangle(1, 4, 6), 'Not A Triangle')
 
     def test_classify_triangle_equilateral_integer(self):
         """Verify an equilateral triangle with integer side lengths"""
@@ -224,16 +158,19 @@ class TestClassifyTriangle(unittest.TestCase):
         """Verify an isosceles triangle"""
         self.assertEqual(classify_triangle(2, 2.828, 2),
                          'Right Isosceles Triangle')
+        self.assertEqual(classify_triangle(math.sqrt(2), math.sqrt(2), 2),
+                         'Right Isosceles Triangle')
 
     def test_classify_triangle_scalene_regular(self):
         """Verify an isosceles triangle"""
-        self.assertEqual(classify_triangle(7, 4.2, 3),
-                         'Scalene Triangle')
+        self.assertEqual(classify_triangle(7, 4.2, 3), 'Scalene Triangle')
+        self.assertEqual(classify_triangle(1, 2, 3), 'Scalene Triangle')
+        self.assertEqual(classify_triangle(2.5, 3.4, 5.1), 'Scalene Triangle')
 
     def test_classify_triangle_scalene_right(self):
         """Verify an isosceles triangle"""
-        self.assertEqual(classify_triangle(3, 5, 4),
-                         'Right Scalene Triangle')
+        self.assertEqual(classify_triangle(3, 5, 4), 'Right Scalene Triangle')
+        self.assertEqual(classify_triangle(3, 4, 5), 'Right Scalene Triangle')
 
     def test_classify_triangle_within_tolerance(self):
         """Test a right triangle with sides within 1%"""
@@ -251,50 +188,6 @@ class TestClassifyTriangle(unittest.TestCase):
                          'Isosceles Triangle')
 
 # Original test cases follow
-
-# Could be combined with
-# test_classify_triangle_non_triangle
-    def test_classify_triangle_NotATriangle(self):
-        # Test Case 07
-        """Test some non-triangles"""
-        self.assertEqual(classify_triangle(1, 4, 6), 'Not A Triangle')
-
-# Obsolete because it is replaced by
-# test_classify_triangle_equilateral_integer
-    def test_classify_triangle_Equilateral(self):
-        # Test Case 08
-        """Test some Equilateral Triangles"""
-        self.assertEqual(classify_triangle(1, 1, 1), 'Equilateral Triangle')
-
-# Obsolete because it is replaced by
-# test_classify_triangle_isosceles_regular
-    def test_classify_triangle_Isosceles(self):
-        # Test Case 09
-        """Test some Isosceles Triangles"""
-        self.assertEqual(classify_triangle(2, 2, 1), 'Isosceles Triangle')
-
-# Could be combined with
-# test_classify_triangle_isosceles_right
-    def test_classify_triangle_IsoscelesRight(self):
-        # Test Case 10
-        """Test some Right Isosceles Triangles"""
-        self.assertEqual(classify_triangle(math.sqrt(2), math.sqrt(2), 2),
-                         'Right Isosceles Triangle')
-
-# Could be combined with
-# test_classify_triangle_scalene_regular
-    def test_classify_triangle_Scalene(self):
-        # Test Case 11
-        """Test some Scalene Triangles"""
-        self.assertEqual(classify_triangle(1, 2, 3), 'Scalene Triangle')
-        self.assertEqual(classify_triangle(2.5, 3.4, 5.1), 'Scalene Triangle')
-
-# Could be combined with
-# test_classify_triangle_scalene_right
-    def test_classify_triangle_ScaleneRight(self):
-        # Test Case 12
-        """Test some Right Scalene Triangles"""
-        self.assertEqual(classify_triangle(3, 4, 5), 'Right Scalene Triangle')
 
 # Partially obsolete because it is replaced by
 # test_classify_triangle_scalene_regular
